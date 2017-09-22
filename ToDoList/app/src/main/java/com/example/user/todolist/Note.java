@@ -16,7 +16,7 @@ public class Note {
     private int priority;
     private String date;
 
-    public Note (String title, String details, int priority, String date )  {
+    public Note (String title, String details, Integer priority, String date )  {
         this.title = title;
         this.details = details;
         this.priority = priority;
@@ -31,7 +31,7 @@ public class Note {
         return details;
     }
 
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
@@ -47,7 +47,7 @@ public class Note {
         this.details = details;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 
