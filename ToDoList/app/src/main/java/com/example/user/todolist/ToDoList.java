@@ -1,5 +1,7 @@
 package com.example.user.todolist;
 
+import android.database.sqlite.SQLiteOpenHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +14,7 @@ public class ToDoList {
 
     public ToDoList() {
         list = new ArrayList<Note>();
-        list.add(new Note("Buy Shopping", "Remember to buy eggs", 1, "27-09-2017"));
+        list.add(new Note("Buy Shopping", "Remember to buy eggs", 2, "27-09-2017"));
     }
 
     public ArrayList<Note> getList() {

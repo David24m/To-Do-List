@@ -28,7 +28,7 @@ public class ToDoListAdapter extends ArrayAdapter<Note> {
 
         Note currentNote = getItem(position);
 
-        TextView title = (TextView) listItemView.findViewById(R.id.title);
+        TextView title = (TextView) listItemView.findViewById(R.id.titleText);
         title.setText(currentNote.getTitle());
 
         listItemView.setTag(currentNote);

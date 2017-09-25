@@ -40,32 +40,4 @@ public class ToDoListTest {
         list.remove(note);
         assertEquals(0, list.size());
     }
-
-    @Test
-    public void canGetTitleOfEntry() {
-        list = new ArrayList<Note>();
-        list.add(note);
-        assertEquals("Buy Shopping", note.getTitle());
-    }
-
-    @Test
-    public void canGetDetailsOfEntry() {
-        list = new ArrayList<Note>();
-        list.add(note);
-        assertEquals("Remember to buy eggs", note.getDetails());
-    }
-
-    @Test
-    public void canGetPriorityOfTask() {
-        list = new ArrayList<Note>();
-        list.add(note);
-        assertEquals(1, note.getPriority());
-    }
-
-    @Test
-    public void canGetDateOfTask() {
-        list = new ArrayList<Note>();
-        list.add(note);
-        assertEquals("27-09-2017", note.getDate());
-    }
 }

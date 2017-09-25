@@ -1,5 +1,6 @@
 package com.example.user.todolist;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,14 +10,14 @@ import java.util.Locale;
  * Created by user on 22/09/2017.
  */
 
-public class Note {
+public class Note implements Serializable {
 
     private String title;
     private String details;
     private int priority;
     private String date;
 
-    public Note (String title, String details, Integer priority, String date )  {
+    public Note (String title, String details, int priority, String date )  {
         this.title = title;
         this.details = details;
         this.priority = priority;
@@ -31,7 +32,7 @@ public class Note {
         return details;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
@@ -47,7 +48,7 @@ public class Note {
         this.details = details;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
