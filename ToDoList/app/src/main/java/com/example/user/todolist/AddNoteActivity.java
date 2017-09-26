@@ -1,18 +1,27 @@
 package com.example.user.todolist;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 
 public class AddNoteActivity extends AppCompatActivity {
 
-    DatabaseHelper todolistDB;
+//    DatabaseHelper todolistDB;
 
     Button confirmAdd;
     EditText newTitleText;
@@ -26,7 +35,9 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
 
 
-        todolistDB = new DatabaseHelper(this);
+
+
+
 
         newTitleText = (EditText) findViewById(R.id.addTitleText);
         newDetailsText = (EditText) findViewById(R.id.addDetailsText);
@@ -43,20 +54,80 @@ public class AddNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+//                String title = newTitleText.getText().toString();
+//                String details = newDetailsText.getText().toString();
+//                Integer priority = newPriorityBar.getNumStars();
+//                String date = newDateText.getText().toString();
+
+
+                //get the list from shared preferences.
+                //see movies examples Thursday.
+
+//                Intent intent = getIntent();
+//                ArrayList<Note> notes = (ArrayList<Note>) intent.getSerializableExtra("list");
+//                Log.d("Notes array from intent", notes.toString());
+
+
+
+                // getting saved notes from SP
+                SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
+                String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
+                Log.d("saved notes", notesJson);
+                Gson gson = new Gson();
+                TypeToken< ArrayList<Note> > notesArrayTypeToken = new TypeToken< ArrayList<Note>>(){};
+                ArrayList<Note> list = gson.fromJson(notesJson, notesArrayTypeToken.getType());
+
+
+                //add a item to the list.
+                //save the whole list back to shared preferences.
+
+
+
+                // TODO: create a note object from text inputs
                 String title = newTitleText.getText().toString();
                 String details = newDetailsText.getText().toString();
                 Integer priority = newPriorityBar.getNumStars();
                 String date = newDateText.getText().toString();
 
-                boolean insertData = todolistDB.addData(title, details, priority, date);
 
-                if(insertData == true) {
-                    Toast.makeText(AddNoteActivity.this, "Data successfully inserted!", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(AddNoteActivity.this, "You messed up!", Toast.LENGTH_LONG).show();
-                }
+                Note newNote = new Note(title, details, priority, date);
+
+//                Log.d("onClick", "confirm add adding");
+//                SharedPreferences sharedPreferences = getSharedPreferences("list", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("title", );
+//                editor.putString("details", );
+//                editor.putInt("priority",
+//                editor.putString("date",
+////                editor.commit();
+
+
+                // TODO: add newNote to ArrayList
+
+                list.add(newNote);
+                Log.d("updated notes", newNote.toString());
+
+                // TODO: convert arraylist to json
+
+//                notesJson = sharedPrefs.getString("allNotes", new ArrayList<Movie>().toString());
+//                Log.d("saved favourites", notesJson);
+
+
+                // TODO: save json in sharedprefs ("allNotes")
+
+                sharedPrefs.edit().putString("allNotes", gson.toJson(list)).apply();
+
+                // TODO: add new Note to list from TextViews
+                // TODO: persist whole list to SharedPrefs
+                // TODO: load whole list from SharedPrefs on TodoListActivity
+                MakeAddToast("Note Added", Toast.LENGTH_SHORT);
+
             }
         });
+    }
+
+    public void MakeAddToast(String message, int length) {
+        Toast.makeText(this, message, length).show();
     }
 
 }

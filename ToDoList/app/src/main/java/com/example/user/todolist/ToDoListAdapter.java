@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -17,11 +18,11 @@ public class ToDoListAdapter extends ArrayAdapter<Note> {
 
     public ToDoListAdapter(Context context, ArrayList<Note> list) {
         super(context, 0, list);
+
     }
 
     @Override
     public View getView(int position, View listItemView, ViewGroup parent) {
-
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.to_do_list_item, parent, false);
         }

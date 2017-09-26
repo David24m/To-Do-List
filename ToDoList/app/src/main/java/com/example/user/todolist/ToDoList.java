@@ -20,4 +20,8 @@ public class ToDoList {
     public ArrayList<Note> getList() {
         return new ArrayList<Note> (list);
     }
+
+    public void setList(ArrayList<Note> list) {
+        this.list = list;
+    }
 }

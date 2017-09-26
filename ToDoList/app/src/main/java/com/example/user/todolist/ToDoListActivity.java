@@ -1,21 +1,36 @@
 package com.example.user.todolist;
 
+import android.app.Application;
+import android.app.LauncherActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.ListMenuItemView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
 
-
+    TextView title_text;
+    ArrayList<Note> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +38,27 @@ public class ToDoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do_list);
 
         ToDoList toDoList = new ToDoList();
-        ArrayList<Note> list = toDoList.getList();
+        //get the list from shared preferences.
+        //see movies examples Thursday.
+        list = toDoList.getList();
+
+        SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
+        String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
+        Log.d("saved notes", notesJson);
+        Gson gson = new Gson();
+        TypeToken< ArrayList<Note> > notesArrayTypeToken = new TypeToken< ArrayList<Note>>(){};
+        ArrayList<Note> list = gson.fromJson(notesJson, notesArrayTypeToken.getType());
+
+//        SharedPreferences sharedPreferences = getSharedPreferences("list", Context.MODE_PRIVATE);
+//        String title = sharedPreferences.getString("title", " ");
+//        String details = sharedPreferences.getString("details", " ");
+//        Integer priority = sharedPreferences.getInt("priority", 0);
+//        String date = sharedPreferences.getString("date", " ");
+//        title_text = (TextView) findViewById(R.id.titleText);
+//        title_text.setText(title);
+//        Log.d("TITLE FROM SP", "title" + title);
+
+
 
         ToDoListAdapter toDoListAdapter = new ToDoListAdapter(this, list);
 
@@ -31,7 +66,23 @@ public class ToDoListActivity extends AppCompatActivity {
         listView.setAdapter(toDoListAdapter);
 
 
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View listItem, int index, long l) {
+                Note note = (Note) listItem.getTag();
+
+                Intent intent = new Intent(ToDoListActivity.this, EditActivity.class);
+                intent.putExtra("selectedTask", note);
+                intent.putExtra("selectedIndex", index);
+
+
+                startActivity(intent);
+            }
+        };
+        listView.setOnItemClickListener(listener);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,18 +104,21 @@ public class ToDoListActivity extends AppCompatActivity {
 
     public void goToNewActivity() {
        Intent intent = new Intent(this, AddNoteActivity.class);
-        startActivity(intent);
-    }
-
-    public void getDetails(View listItem){
-        Note note = (Note) listItem.getTag();
-
-        Intent intent = new Intent(this, EditActivity.class);
-
-        intent.putExtra("selectedTask", note);
-
+        intent.putExtra("list", list);
 
         startActivity(intent);
     }
+
+
+
+//    public void getDetails(View listItem){
+//        Note note = (Note) listItem.getTag();
+//
+//        Intent intent = new Intent(this, EditActivity.class);
+//        intent.putExtra("selectedTask", note);
+//
+//
+//        startActivity(intent);
+//    }
 
 }
