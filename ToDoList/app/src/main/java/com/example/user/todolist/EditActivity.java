@@ -79,7 +79,7 @@ public class EditActivity extends AppCompatActivity {
 
         String title = titleField.getText().toString();
         String details = detailsField.getText().toString();
-        Integer priority = priorityField.getNumStars();
+        float priority = priorityField.getRating();
         String date = dateField.getText().toString();
 
 
@@ -111,10 +111,10 @@ public class EditActivity extends AppCompatActivity {
 
         Note note = list.get(index);
 
-        String title = titleField.getText().toString();
-        String details = detailsField.getText().toString();
-        Integer priority = priorityField.getNumStars();
-        String date = dateField.getText().toString();
+//        String title = titleField.getText().toString();
+//        String details = detailsField.getText().toString();
+//        Integer priority = priorityField.getNumStars();
+//        String date = dateField.getText().toString();
 
 
         list.remove(note);

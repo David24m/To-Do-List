@@ -14,10 +14,10 @@ public class Note implements Serializable {
 
     private String title;
     private String details;
-    private int priority;
+    private float priority;
     private String date;
 
-    public Note (String title, String details, int priority, String date )  {
+    public Note (String title, String details, float priority, String date )  {
         this.title = title;
         this.details = details;
         this.priority = priority;
@@ -32,7 +32,7 @@ public class Note implements Serializable {
         return details;
     }
 
-    public int getPriority() {
+    public float getPriority() {
         return priority;
     }
 
@@ -48,7 +48,7 @@ public class Note implements Serializable {
         this.details = details;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(float priority) {
         this.priority = priority;
     }
 

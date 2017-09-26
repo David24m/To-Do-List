@@ -86,7 +86,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 // TODO: create a note object from text inputs
                 String title = newTitleText.getText().toString();
                 String details = newDetailsText.getText().toString();
-                Integer priority = newPriorityBar.getNumStars();
+                float priority = newPriorityBar.getRating();
                 String date = newDateText.getText().toString();
 
 
