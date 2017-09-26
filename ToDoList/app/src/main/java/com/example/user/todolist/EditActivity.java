@@ -51,7 +51,7 @@ public class EditActivity extends AppCompatActivity {
 //        savenotebutton = (Button) findViewById(R.id.editButton);
 //        savednotes = getSharedPreferences("list", MODE_PRIVATE);
 
-
+        
     }
 
 
