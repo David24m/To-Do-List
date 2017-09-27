@@ -60,12 +60,3 @@ public class Note implements Serializable {
 }
 
 
-
-//
-//        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-mm-yyyy", Locale.UK);
-//        try {
-//            this.date = dateFormatter.parse(dateString);
-//        }
-//        catch (ParseException exception) {
-//            this.date = new Date();
-//        }

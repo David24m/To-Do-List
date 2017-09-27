@@ -23,9 +23,6 @@ public class EditActivity extends AppCompatActivity {
     EditText detailsField;
     RatingBar priorityField;
     EditText dateField;
-//    Button savenotebutton;
-//    SharedPreferences savednotes;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +44,9 @@ public class EditActivity extends AppCompatActivity {
 
         dateField = (EditText) findViewById(R.id.dateText);
         dateField.setText(note.getDate());
-
-//        savenotebutton = (Button) findViewById(R.id.editButton);
-//        savednotes = getSharedPreferences("list", MODE_PRIVATE);
-
-        
     }
 
-
     public void getEdit(View button) {
-//        String UserTitleField = titleField.getText().toString();
-//        titleField.setText(UserTitleField);
-//        String UserDetailsField = detailsField.getText().toString();
-//        detailsField.setText(UserDetailsField);
-////        Integer UserRatingField = priorityField.getRating();
-////        priorityField.setRating(UserRatingField);
-//        String UserDateField = dateField.getText().toString();
-//        dateField.setText(UserDateField);
-
         SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
         String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
         Log.d("saved notes", notesJson);
@@ -82,15 +64,10 @@ public class EditActivity extends AppCompatActivity {
         float priority = priorityField.getRating();
         String date = dateField.getText().toString();
 
-
         note.setTitle(title);
         note.setDetails(details);
         note.setPriority(priority);
         note.setDate(date);
-
-
-//        list.(noteEdit);
-//        Log.d("updated notes", noteEdit.toString());
 
         sharedPrefs.edit().putString("allNotes", gson.toJson(list)).apply();
 
@@ -98,7 +75,6 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void getDelete(View button) {
-
         SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
         String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
         Log.d("saved notes", notesJson);
@@ -110,12 +86,6 @@ public class EditActivity extends AppCompatActivity {
         Integer index = intent.getIntExtra("selectedIndex", -1);
 
         Note note = list.get(index);
-
-//        String title = titleField.getText().toString();
-//        String details = detailsField.getText().toString();
-//        Integer priority = priorityField.getNumStars();
-//        String date = dateField.getText().toString();
-
 
         list.remove(note);
         Log.d("updated notes", note.toString());
@@ -132,5 +102,4 @@ public class EditActivity extends AppCompatActivity {
     public void MakeDeleteToast(String message, int length) {
         Toast.makeText(this, message, length).show();
     }
-
 }

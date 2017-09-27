@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
 
-    TextView title_text;
+
     ArrayList<Note> list = new ArrayList<>();
 
     @Override
@@ -38,8 +38,7 @@ public class ToDoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do_list);
 
         ToDoList toDoList = new ToDoList();
-        //get the list from shared preferences.
-        //see movies examples Thursday.
+
         list = toDoList.getList();
 
         SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
@@ -49,22 +48,11 @@ public class ToDoListActivity extends AppCompatActivity {
         TypeToken< ArrayList<Note> > notesArrayTypeToken = new TypeToken< ArrayList<Note>>(){};
         ArrayList<Note> list = gson.fromJson(notesJson, notesArrayTypeToken.getType());
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("list", Context.MODE_PRIVATE);
-//        String title = sharedPreferences.getString("title", " ");
-//        String details = sharedPreferences.getString("details", " ");
-//        Integer priority = sharedPreferences.getInt("priority", 0);
-//        String date = sharedPreferences.getString("date", " ");
-//        title_text = (TextView) findViewById(R.id.titleText);
-//        title_text.setText(title);
-//        Log.d("TITLE FROM SP", "title" + title);
-
-
 
         ToDoListAdapter toDoListAdapter = new ToDoListAdapter(this, list);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoListAdapter);
-
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
@@ -81,8 +69,6 @@ public class ToDoListActivity extends AppCompatActivity {
         };
         listView.setOnItemClickListener(listener);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,17 +94,5 @@ public class ToDoListActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
-
-
-//    public void getDetails(View listItem){
-//        Note note = (Note) listItem.getTag();
-//
-//        Intent intent = new Intent(this, EditActivity.class);
-//        intent.putExtra("selectedTask", note);
-//
-//
-//        startActivity(intent);
-//    }
 
 }
