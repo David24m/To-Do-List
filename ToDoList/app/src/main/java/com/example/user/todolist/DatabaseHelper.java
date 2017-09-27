@@ -1,3 +1,5 @@
+package com.example.user.todolist;
+
 //package com.example.user.todolist;
 //
 //import android.content.ContentValues;
@@ -9,7 +11,15 @@
 // * Created by user on 24/09/2017.
 // */
 //
-//public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper {
+
+
+
+
+ }
+//
+//
+// extends SQLiteOpenHelper {
 //
 //    public static final String DATABASE_NAME = "todolist.db";
 //    public static final String TABLE_NAME = "todolist_table";
