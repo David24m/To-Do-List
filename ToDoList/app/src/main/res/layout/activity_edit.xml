@@ -69,6 +69,7 @@
         android:background="@color/colorPrimaryDark"
         android:onClick="getEdit"
         android:text="@string/edit_button"
+        android:textColor="@android:color/background_light"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateText" />
 

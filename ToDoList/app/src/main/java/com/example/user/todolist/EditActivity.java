@@ -47,6 +47,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void getEdit(View button) {
+
         SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
         String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
         Log.d("saved notes", notesJson);
@@ -75,6 +76,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void getDelete(View button) {
+
         SharedPreferences sharedPrefs = getSharedPreferences("list", Context.MODE_PRIVATE);
         String notesJson = sharedPrefs.getString("allNotes", new ArrayList<Note>().toString());
         Log.d("saved notes", notesJson);
