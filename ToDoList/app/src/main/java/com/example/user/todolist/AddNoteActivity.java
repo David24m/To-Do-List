@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class AddNoteActivity extends AppCompatActivity {
 
-//    DatabaseHelper todolistDB;
+
 
     Button confirmAdd;
     EditText newTitleText;
@@ -56,7 +56,6 @@ public class AddNoteActivity extends AppCompatActivity {
                 TypeToken< ArrayList<Note> > notesArrayTypeToken = new TypeToken< ArrayList<Note>>(){};
                 ArrayList<Note> list = gson.fromJson(notesJson, notesArrayTypeToken.getType());
 
-                // TODO: create a note object from text inputs
                 String title = newTitleText.getText().toString();
                 String details = newDetailsText.getText().toString();
                 float priority = newPriorityBar.getRating();
@@ -64,21 +63,13 @@ public class AddNoteActivity extends AppCompatActivity {
 
                 Note newNote = new Note(title, details, priority, date);
 
-                // TODO: add newNote to ArrayList
 
                 list.add(newNote);
                 Log.d("updated notes", newNote.toString());
 
-                // TODO: convert arraylist to json
-
-
-                // TODO: save json in sharedprefs ("allNotes")
 
                 sharedPrefs.edit().putString("allNotes", gson.toJson(list)).apply();
 
-                // TODO: add new Note to list from TextViews
-                // TODO: persist whole list to SharedPrefs
-                // TODO: load whole list from SharedPrefs on TodoListActivity
                 MakeAddToast("Note Added", Toast.LENGTH_SHORT);
             }
         });
