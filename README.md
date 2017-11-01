@@ -13,3 +13,5 @@ Project Extensions
 
 Allow the user to prioritise and/or categorise tasks
 Use the calendar to set due dates on tasks.
+
+The project was a huge success and I went beyond the MVP of the project to also allow the user to edit and delete tasks from the list. Further extensions involved including a date and priority selection option to tasks, making the app even more useful for users.
